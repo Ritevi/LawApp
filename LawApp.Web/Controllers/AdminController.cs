@@ -8,8 +8,8 @@ using LawApp.Bll.Services;
 
 namespace LawApp.Web.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]/admin")]
     public class AdminController : ControllerBase
     {
         private readonly IAdminService _adminService;
@@ -19,6 +19,12 @@ namespace LawApp.Web.Controllers
             _adminService = adminService;
         }
 
+
+        /// <summary>
+        /// Add default questions in DB
+        /// </summary>
+        /// <response code="200">Test questions added to database</response>
+        [HttpGet]
         public async Task<IActionResult> PopulateData()
         {
             await _adminService.PopulateDbAsync();

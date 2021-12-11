@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using LawApp.Rep.Configuration;
 using Microsoft.VisualBasic;
 
@@ -48,15 +51,22 @@ namespace LawApp.Web
 
 
 
-            services.AddSwaggerDocument(c =>
+            services.AddSwaggerGen(c =>
             {
-                c.PostProcess = doc =>
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    doc.Info.Version = "v1";
-                    doc.Info.Title = "IHub Web Api";
-                    doc.Info.Description = "The documentation IHub Web API";
-                };
+                    Title = "Law App API",
+                    Version = "v1",
+                    Description = "The documentation Law App Web API"
+                });
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
+
+            controllers.AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -94,19 +104,15 @@ namespace LawApp.Web
                             }
                         });*/
 
-            app
-                .UseOpenApi(cfg =>
-                {
-                    cfg.PostProcess = (document, request) =>
-                    {
-                        var apiServerUrl = Configuration.GetValue<string>("apiServerUrl");
-                        if (!String.IsNullOrWhiteSpace(apiServerUrl))
-                        {
-                            document.Host = new Uri(apiServerUrl).Authority;
-                        }
-                    };
-                })
-                .UseSwaggerUi3(cfg => { cfg.EnableTryItOut = true; });
+            app.UseSwagger(c =>
+            {
+                c.SerializeAsV2 = true;
+            });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Law App API V1");
+                c.EnableTryItOutByDefault();
+            });
 
             Rep.Configuration.Startup.Initialize(app);
         }
