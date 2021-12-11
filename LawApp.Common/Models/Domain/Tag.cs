@@ -9,5 +9,6 @@ namespace LawApp.Common.Models.Domain
     {
         public Guid Id { get; set; }
         public string Text { get; set; }
+        public List<Doc> Docs { get; set; }
     }
 }

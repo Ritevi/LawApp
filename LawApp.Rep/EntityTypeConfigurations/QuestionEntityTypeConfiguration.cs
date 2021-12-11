@@ -15,6 +15,7 @@ namespace LawApp.Rep.EntityTypeConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.HasIndex(x => x.Id);
+            builder.Property(x => x.Type).HasConversion<string>();
             builder.HasMany(x => x.Answers).WithOne(x => x.Question);
             builder.HasMany(x => x.Tags);
         }

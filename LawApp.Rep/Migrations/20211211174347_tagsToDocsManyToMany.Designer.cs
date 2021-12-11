@@ -3,6 +3,7 @@ using System;
 using LawApp.Rep.SqlContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using AppContext = LawApp.Rep.SqlContext.AppContext;
@@ -10,9 +11,10 @@ using AppContext = LawApp.Rep.SqlContext.AppContext;
 namespace LawApp.Rep.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20211211174347_tagsToDocsManyToMany")]
+    partial class tagsToDocsManyToMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
