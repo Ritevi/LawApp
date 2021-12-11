@@ -11,6 +11,6 @@ namespace LawApp.Common.Models.Domain
         public string Text { get; set; }
         public List<Tag> Tags { get; set; }
         public Question Question { get; set; }
-        public List<Question> NextQuestions { get; set; } //todo  change to guids
+        public List<Question> NextQuestions { get; set; }
     }
 }
