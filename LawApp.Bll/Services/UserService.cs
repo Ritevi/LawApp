@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using LawApp.Common.Models.Dto;
@@ -32,6 +33,13 @@ namespace LawApp.Bll.Services
         public async Task<bool> CheckPasswordByEmail(string email, string password)
         {
             return await _userRepository.CheckPasswordByEmail(email, password);
+        }
+
+        public Task<bool> CheckEmailCorrect(string email)
+        {
+            var regex = new Regex(@"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var mathces = regex.Matches(email);
+            return Task.FromResult(mathces.Count > 0);
         }
 
         public async Task<UserViewModel> CreateUserAsync(RegisterViewModel registerViewModel)

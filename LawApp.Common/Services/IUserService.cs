@@ -8,6 +8,7 @@ namespace LawApp.Common.Services
     {
         Task<bool> CheckUserByEmailAsync(string email);
         Task<bool> CheckPasswordByEmail(string email, string password);
+        Task<bool> CheckEmailCorrect(string email);
 
         Task<UserViewModel> CreateUserAsync(RegisterViewModel registerViewModel);
     }

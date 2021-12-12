@@ -23,18 +23,22 @@ namespace LawApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromBody]LoginViewModel model)
         {
-            var userExist = await _userService.CheckUserByEmailAsync(model.Email);
+            var emailCorrect = await _userService.CheckEmailCorrect(model.Email);
+            if (!emailCorrect)
+            {
+                return StatusCode(422, "Incorrect email");
+            }
 
+            var userExist = await _userService.CheckUserByEmailAsync(model.Email);
             if (!userExist)
             {
                 return Forbid();
             }
 
             var passCorrect = await _userService.CheckPasswordByEmail(model.Email, model.Password);
-
             if (!passCorrect)
             {
-                return Unauthorized();
+                return StatusCode(401, "Wrong password");
             }
 
             await AuthenticateAsync(model.Email);
@@ -45,6 +49,12 @@ namespace LawApp.Web.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            var emailCorrect = await _userService.CheckEmailCorrect(model.Email);
+            if (!emailCorrect)
+            {
+                return StatusCode(422, "Incorrect email");
+            }
+
             var userExist = await _userService.CheckUserByEmailAsync(model.Email);
             if (!userExist)
             {

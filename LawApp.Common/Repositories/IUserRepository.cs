@@ -13,7 +13,6 @@ namespace LawApp.Common.Repositories
     {
         Task<bool> CheckUserByEmailAsync(string email);
         Task<bool> CheckPasswordByEmail(string email, string password);
-
         Task<User> CreateUserAsync(RegisterViewModel registerViewModel);
     }
 }
