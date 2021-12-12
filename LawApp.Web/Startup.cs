@@ -11,8 +11,11 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
+using System.Net;
 using System.Reflection;
+using System.Threading.Tasks;
 using LawApp.Rep.Configuration;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace LawApp.Web
 {
@@ -29,6 +32,17 @@ namespace LawApp.Web
         {
             services.ConfigureBll();
             services.ConfigureDal(Configuration);
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                    options.Events.OnRedirectToLogin = context =>
+                    {
+                        //options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        return Task.CompletedTask;
+                    });
+
+
             var controllers = services.AddControllers();
 
             services.AddSpaStaticFiles(configuration =>
@@ -93,8 +107,15 @@ namespace LawApp.Web
 
             app.UseHttpsRedirection();
 
-            app.UseRouting()
-                .UseEndpoints(endpoints => endpoints.MapControllers());
+            app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
+
+            
 
 
             /*            app.UseSpa(spa =>

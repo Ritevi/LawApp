@@ -11,7 +11,7 @@ namespace LawApp.Bll.Configuration
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IDocService, DocService>();
             services.AddTransient<IAdminService, AdminService>();
-
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
     }

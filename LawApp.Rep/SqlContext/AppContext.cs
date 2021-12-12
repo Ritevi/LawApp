@@ -11,7 +11,8 @@ namespace LawApp.Rep.SqlContext
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Doc> Docs { get; set; }
- 
+        public DbSet<User> Users { get; set; }
+
         public AppContext()
         {
         }
