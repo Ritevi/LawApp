@@ -17,7 +17,7 @@ namespace LawApp.Rep.Repositories
         }
 
 
-        public async Task<List<Question>> GetFirstQuestionAsync(QuestionPagingDto context)
+        public async Task<List<Question>> GetFirstQuestionsAsync(QuestionPagingDto context)
         {
             var dbContext = dbFactory.CreateContext();
 
@@ -39,7 +39,9 @@ namespace LawApp.Rep.Repositories
                 .Include(x => x.Answers)
                 .ThenInclude(x => x.NextQuestions)
                 .Include(x => x.Answers)
-                .ThenInclude(x => x.Tags);
+                .ThenInclude(x => x.Tags)
+                .Include(x => x.PreviousAnswer)
+                .ThenInclude(x => x.Question);
                 
 
             return await query.ApplyPaging(paging).ToListAsync();

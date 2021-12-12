@@ -14,7 +14,9 @@ namespace LawApp.Rep.Configuration
         public static IServiceCollection ConfigureDal(this IServiceCollection services, IConfiguration configuration)
         {
             ConfigureDbContext(services, configuration);
-            AddDependenciesToContainer(services);
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            services.AddTransient<IDocRepository, DocRepository>();
+            services.AddTransient<IAnswerRepository, AnswerRepository>();
 
             return services;
         }
@@ -29,13 +31,6 @@ namespace LawApp.Rep.Configuration
 
             var dbFactory = new AppContextFactory(connectionString);
             services.AddSingleton(typeof(IAppContextFactory), dbFactory);
-        }
-
-        private static void AddDependenciesToContainer(IServiceCollection services)
-        {
-            services.AddTransient<IQuestionRepository, QuestionRepository>();
-            services.AddTransient<IDocRepository, DocRepository>();
-            services.AddTransient<IAnswerRepository, AnswerRepository>();
         }
     }
 }

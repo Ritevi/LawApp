@@ -27,7 +27,7 @@ namespace LawApp.Web.Controllers
         /// <returns>List of questions</returns>
         /// <response code="200">List of questions</response>
         [HttpGet]
-        public async Task<ActionResult<List<Question>>> GetFirst([FromQuery] QuestionPagingDto context)
+        public async Task<ActionResult<List<QuestionViewModel>>> GetFirst([FromQuery] QuestionPagingDto context)
         {
             return await _questionService.GetFirstQuestionsAsync(context);
         }
@@ -38,7 +38,7 @@ namespace LawApp.Web.Controllers
         /// <returns>List of questions fro answer</returns>
         /// <response code="200">List of questions answer</response>
         [HttpPost]
-        public async Task<ActionResult<List<Question>>> GetByAnswers([FromBody] QuestionsByAnswersDto context)
+        public async Task<ActionResult<List<QuestionViewModel>>> GetByAnswers([FromBody] QuestionsByAnswersDto context)
         {
             return await _questionService.GetByAnswersAsync(context);
         }
