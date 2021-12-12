@@ -10,6 +10,6 @@ namespace LawApp.Common.Repositories
     {
         public Task<List<Question>> GetByAnswersAsync(List<Answer> answers, PagingParameters paging);
 
-        public Task<List<Question>> GetFirstQuestionAsync(QuestionPagingDto context);
+        public Task<List<Question>> GetFirstQuestionsAsync(QuestionPagingDto context);
     }
 }

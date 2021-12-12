@@ -2,7 +2,6 @@ using LawApp.Bll.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,10 +11,8 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using LawApp.Rep.Configuration;
-using Microsoft.VisualBasic;
 
 namespace LawApp.Web
 {
@@ -50,6 +47,12 @@ namespace LawApp.Web
                     }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
 
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddMaps(new[] {
+                    "LawApp.Bll"
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {
