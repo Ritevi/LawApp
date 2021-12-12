@@ -8,7 +8,7 @@ namespace LawApp.Rep.SqlContext
 
         public AppContextFactory(string connectionString)
         {
-            this._connectionString = connectionString;
+            _connectionString = connectionString;
         }
 
         public AppContext CreateContext()

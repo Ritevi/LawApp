@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using LawApp.Common.Models.Domain;
 using LawApp.Common.Models.Dto;
 using LawApp.Common.Services;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace LawApp.Web.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/question")]
+    [Route("api/[controller]")]
     public class QuestionController : ControllerBase
     {
         private readonly IQuestionService _questionService;
@@ -27,6 +28,7 @@ namespace LawApp.Web.Controllers
         /// <returns>List of questions</returns>
         /// <response code="200">List of questions</response>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<QuestionViewModel>>> GetFirst([FromQuery] QuestionPagingDto context)
         {
             return await _questionService.GetFirstQuestionsAsync(context);
@@ -38,6 +40,7 @@ namespace LawApp.Web.Controllers
         /// <returns>List of questions fro answer</returns>
         /// <response code="200">List of questions answer</response>
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<List<QuestionViewModel>>> GetByAnswers([FromBody] QuestionsByAnswersDto context)
         {
             return await _questionService.GetByAnswersAsync(context);
