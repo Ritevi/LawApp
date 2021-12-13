@@ -7,7 +7,7 @@ namespace LawApp.Common.Services
 {
     public interface IQuestionService
     {
-        Task<List<Question>> GetFirstQuestionsAsync(QuestionPagingDto context);
-        Task<List<Question>> GetByAnswersAsync(QuestionsByAnswersDto context);
+        Task<List<QuestionViewModel>> GetFirstQuestionsAsync(QuestionPagingDto context);
+        Task<List<QuestionViewModel>> GetByAnswersAsync(QuestionsByAnswersDto context);
     }
 }

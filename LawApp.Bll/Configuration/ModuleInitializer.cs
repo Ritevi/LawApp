@@ -8,16 +8,12 @@ namespace LawApp.Bll.Configuration
     {
         public static IServiceCollection ConfigureBll(this IServiceCollection services)
         {
-            AddDependenciesToContainer(services);
-
-            return services;
-        }
-
-        private static void AddDependenciesToContainer(IServiceCollection services)
-        {
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IDocService, DocService>();
             services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<ITagService, TagService>();
+
+            return services;
         }
     }
 }
