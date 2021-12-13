@@ -17,6 +17,7 @@ namespace LawApp.Rep.Configuration
             services.AddTransient<IQuestionRepository, QuestionRepository>();
             services.AddTransient<IDocRepository, DocRepository>();
             services.AddTransient<IAnswerRepository, AnswerRepository>();
+            services.AddTransient<ITagRepository, TagRepository>();
 
             return services;
         }
