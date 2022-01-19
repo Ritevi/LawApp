@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using LawApp.Common.Models.Domain;
-
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace LawApp.Rep.SqlContext
 {
@@ -23,9 +24,16 @@ namespace LawApp.Rep.SqlContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //todo check if work nice
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=db;Username=sa;Password=pass;Database=law_app");
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .AddEnvironmentVariables()
+                    .Build();
+                var connectionString = configuration.GetConnectionString("ConnectionStrings:pgConnectionString");
+                optionsBuilder.UseNpgsql(connectionString);
             }
         }
 
