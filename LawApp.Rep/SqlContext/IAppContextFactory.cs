@@ -2,6 +2,6 @@
 {
     internal interface IAppContextFactory
     {
-        AppContext CreateContext();
+        LowAppContext CreateContext();
     }
 }

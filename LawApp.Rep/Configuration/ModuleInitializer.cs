@@ -25,7 +25,7 @@ namespace LawApp.Rep.Configuration
         private static void ConfigureDbContext(IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("pgConnectionString");
-            services.AddDbContext<AppContext>(options =>
+            services.AddDbContext<LowAppContext>(options =>
             {
                 options.UseNpgsql(connectionString);
             });

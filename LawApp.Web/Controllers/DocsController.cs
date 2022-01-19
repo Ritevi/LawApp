@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LawApp.Common.Models.Domain;
 using LawApp.Common.Models.Dto;
@@ -37,7 +38,7 @@ namespace LawApp.Web.Controllers
         /// </summary>
         /// <returns>List of docs</returns>
         [HttpPost("tags")]
-        public async Task<ActionResult<List<DocViewModel>>> GetDocsByTag([FromBody] List<TagViewModel> tags)
+        public async Task<ActionResult<List<DocViewModel>>> GetDocsByTag([FromBody] List<Guid> tags)
         {
             var docs = await _docService.GetByTagsAsync(tags);
             

@@ -11,10 +11,10 @@ namespace LawApp.Rep.SqlContext
             this._connectionString = connectionString;
         }
 
-        public AppContext CreateContext()
+        public LowAppContext CreateContext()
         {
-            var opt = new DbContextOptionsBuilder<AppContext>().UseNpgsql(_connectionString).Options;
-            return new AppContext(opt);
+            var opt = new DbContextOptionsBuilder<LowAppContext>().UseNpgsql(_connectionString).Options;
+            return new LowAppContext(opt);
         }
     }
 }

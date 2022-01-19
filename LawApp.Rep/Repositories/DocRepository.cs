@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LawApp.Common.Models.Domain;
@@ -15,11 +16,11 @@ namespace LawApp.Rep.Repositories
         {
         }
 
-        public async Task<List<Doc>> GetByTagsAsync(List<TagViewModel> tags)
+        public async Task<List<Doc>> GetByTagsAsync(List<Guid> tags)
         {
             var dbContext = dbFactory.CreateContext();
 
-            var tagIds = tags.Select(x => x.Id).ToList();
+            var tagIds = tags;
             return await dbContext.Docs.Include(d=>d.Tags)
                 .Where(doc => doc.Tags.Intersect(
                     dbContext.Tags.Where(x=>tagIds.Contains(x.Id)))

@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using AppContext = LawApp.Rep.SqlContext.AppContext;
+using LowAppContext = LawApp.Rep.SqlContext.LowAppContext;
 
 namespace LawApp.Rep.Migrations
 {
-    [DbContext(typeof(AppContext))]
+    [DbContext(typeof(LowAppContext))]
     [Migration("20211206202920_Initial")]
     partial class Initial
     {

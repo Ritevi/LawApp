@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LawApp.Common.Models.Dto;
 using LawApp.Common.Services;
+using System;
 
 namespace LawApp.Bll.Services
 {
@@ -18,7 +19,7 @@ namespace LawApp.Bll.Services
             _mapper = mapper;
         }
 
-        public async Task<List<DocViewModel>> GetByTagsAsync(List<TagViewModel> tags)
+        public async Task<List<DocViewModel>> GetByTagsAsync(List<Guid> tags)
         {
             var docList = await _docRepository.GetByTagsAsync(tags);
             return _mapper.Map<List<DocViewModel>>(docList);

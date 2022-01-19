@@ -3,15 +3,17 @@ using System;
 using LawApp.Rep.SqlContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace LawApp.Rep.Migrations
 {
     [DbContext(typeof(LowAppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20220119204155_AddDocType")]
+    partial class AddDocType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

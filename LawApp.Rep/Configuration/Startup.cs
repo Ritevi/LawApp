@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using AppContext = LawApp.Rep.SqlContext.AppContext;
+using LowAppContext = LawApp.Rep.SqlContext.LowAppContext;
 
 namespace LawApp.Rep.Configuration
 {
@@ -18,7 +18,7 @@ namespace LawApp.Rep.Configuration
             }
 
             using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
-            using var context = serviceScope.ServiceProvider.GetRequiredService<AppContext>();
+            using var context = serviceScope.ServiceProvider.GetRequiredService<LowAppContext>();
             context.Database.Migrate();
         }
     }

@@ -5,18 +5,18 @@ using LawApp.Common.Models.Domain;
 
 namespace LawApp.Rep.SqlContext
 {
-    internal class AppContext : DbContext
+    internal class LowAppContext : DbContext
     {
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Doc> Docs { get; set; }
  
-        public AppContext()
+        public LowAppContext()
         {
         }
 
-        public AppContext(DbContextOptions options)
+        public LowAppContext(DbContextOptions options)
             : base(options)
         {
         }
@@ -31,7 +31,7 @@ namespace LawApp.Rep.SqlContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(AppContext))!);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(LowAppContext))!);
         }
     }
 
