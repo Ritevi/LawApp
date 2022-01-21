@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: pass
+      POSTGRESS_DB: law_app
+    ports :
+      - 5432:5432
+    container_name: db
+     
+  lawapp-api:
+    build:
+      context: ./LawAppFull/LawApp/src
+      dockerfile: Dockerfile
+    ports:
+      - 5002:80
+    container_name: lawapp-api
+    environment: 
+      "ConnectionStrings::pgConnectionString": "Host=db;Username=sa;Password=pass;Database=law_app"
+    links:
+      - db
+
+  lawapp-client:
+    build:
+      context: ./law-app-client
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    container_name: lawapp-client
+    environment:
+      API_HOST: http://localhost:8080/api
