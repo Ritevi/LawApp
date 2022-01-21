@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawApp.Common", "LawApp.Common\LawApp.Common.csproj", "{7C7D2C69-FDD0-41E4-857D-5107C9E408DF}"
 EndProject
@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawApp.Bll", "LawApp.Bll\La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawApp.Rep", "LawApp.Rep\LawApp.Rep.csproj", "{2CD67F33-5C61-406B-B08C-74A8E40D459F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawApp.Web", "LawApp.Web\LawApp.Web.csproj", "{C6503AB4-67C8-4C7A-9052-B8FA1B10A301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawApp.Web", "LawApp.Web\LawApp.Web.csproj", "{C6503AB4-67C8-4C7A-9052-B8FA1B10A301}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

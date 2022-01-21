@@ -17,3 +17,13 @@ services:
     restart: always
     ports:
       - 8080:8080
+      
+  lawapp-api:
+    build:
+      context: ./../../LawApp/src
+      dockerfile: Dockerfile
+    ports:
+      - 5003:80
+    container_name: lawapp-api
+    links:
+      - db

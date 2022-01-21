@@ -22,5 +22,5 @@ RUN dotnet publish "LawApp.Web.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV "ConnectionStrings__pgConnectionString"="Host=db;Username=sa;Password=pass;Database=law_app"
+ENV "ConnectionStrings:pgConnectionString"="Host=db;Username=sa;Password=pass;Database=law_app"
 ENTRYPOINT ["dotnet", "LawApp.Web.dll"]
